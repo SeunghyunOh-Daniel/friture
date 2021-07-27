@@ -27,7 +27,20 @@ sudo apt-get install -y libportaudio2
 ```
 sudo apt-get install -y python3.9-dev
 ```
-
+* Mac OS M1 , Big Sur
+* Install python 3.8
+    * portaudio library coundn't open in python 3.9 
+        * Detail
+            * audiobackend.py/log_supported_input_formats/check_input_settings/sounddevice.py/_check(_lib.Pa_IsFormatSupported(_ffi.NULL, parameters, samplerate))
+            * it cound't open the streaming using portaudio library in python 3.9
+        * Solution
+            * Using python 3.8
+            * In MacOs, it need to change the path_name below the file to open the library for adding OpenGL library for "from OpenGL import GL"
+            * env/lib/python3.8/site-packages/OpenGL/platform/ctypesloader.py
+            * _loadLibraryWindows
+            * ...
+            * # fullName = util.find_library( name )
+            * fullName = '/System/Library/Frameworks/OpenGL.framework/OpenGL'
 4. Clone the repository
 ```
 git clone https://github.com/tlecomte/friture.git
